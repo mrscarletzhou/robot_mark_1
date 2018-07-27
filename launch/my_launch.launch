@@ -1,0 +1,15 @@
+<launch>
+
+  <arg name="model" default="$(find beginner_tutorials)/type_1/urdf/mark_1.urdf" />
+  <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="publisher_that_publishes_states" pkg="beginner_tutorials" type="publisher_2.py" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>
+
